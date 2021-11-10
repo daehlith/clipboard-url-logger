@@ -1,7 +1,7 @@
 {
-    "name": "cpp-project-template",
+    "name": "clipboard-url-logger",
     "version": "0.0.0",
-    "description": "A C++ project template using using cmake, git, and vcpkg",
-    "homepage": "https://github.com/daehlith/cpp-project-template",
-    "dependencies": []
+    "description": "Inspired by https://web.eecs.utk.edu/~azh/blog/thisprojectwillonlytake.html and the following hackernews discussion.",
+    "homepage": "https://github.com/daehlith/clipboard-url-logger",
+    "dependencies": ["qtbase"]
 }
