@@ -32,8 +32,8 @@ set(CMAKE_AUTOUIC ON)
 
 find_package(Qt6 COMPONENTS Widgets REQUIRED)
 
-add_executable(${CMAKE_PROJECT_NAME} WIN32 src/main.cpp src/clipboardurllogger.cpp)
-target_link_libraries(${CMAKE_PROJECT_NAME} Qt6::Widgets)
+qt_add_executable(${CMAKE_PROJECT_NAME} WIN32 src/main.cpp src/clipboardurllogger.cpp)
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE Qt6::Widgets)
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     set(_WINDEPLOYQT_COMMAND "${QT6_INSTALL_PREFIX}/tools/Qt6/bin/windeployqt")
