@@ -35,8 +35,16 @@ find_package(Qt6 COMPONENTS Widgets REQUIRED)
 add_executable(${CMAKE_PROJECT_NAME} WIN32 src/main.cpp src/clipboardurllogger.cpp)
 target_link_libraries(${CMAKE_PROJECT_NAME} Qt6::Widgets)
 
-set(_SRC_PLATFORM_DIR ${CMAKE_BINARY_DIR}/vcpkg_installed/${VCPKG_TARGET_TRIPLET}/Qt6/plugins/platforms/)
-add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E rm -Rf $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>/platforms/
-    COMMAND ${CMAKE_COMMAND} -E copy_directory ${_SRC_PLATFORM_DIR} $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>/platforms/
-)
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    set(_WINDEPLOYQT_COMMAND "${QT6_INSTALL_PREFIX}/tools/Qt6/bin/windeployqt")
+    if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+        set(_WINDEPLOYQT_COMMAND "${QT6_INSTALL_PREFIX}/tools/Qt6/bin/windeployqt.debug")
+    endif()
+    add_custom_command(
+        TARGET ${CMAKE_PROJECT_NAME}
+        POST_BUILD
+        COMMAND "${_WINDEPLOYQT_COMMAND}" "$<TARGET_FILE:${CMAKE_PROJECT_NAME}>"
+        VERBATIM
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    )
+endif()

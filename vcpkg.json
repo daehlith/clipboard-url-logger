@@ -1,7 +1,7 @@
 {
     "name": "clipboard-url-logger",
     "version": "0.0.0",
-    "description": "Inspired by https://web.eecs.utk.edu/~azh/blog/thisprojectwillonlytake.html and the following hackernews discussion.",
+    "description": "Inspired by https://web.eecs.utk.edu/~azh/blog/thisprojectwillonlytake.html and the following hacker news discussion.",
     "homepage": "https://github.com/daehlith/clipboard-url-logger",
-    "dependencies": ["qtbase"]
+    "dependencies": ["qtbase", "qttools"]
 }
