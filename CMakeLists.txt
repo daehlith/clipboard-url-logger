@@ -47,4 +47,8 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
         VERBATIM
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     )
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    set(MACOSX_BUNDLE_ICON_FILE appicon.icns)
+    set_source_files_properties(res/appicon.icns PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
+    target_sources(${CMAKE_PROJECT_NAME} PRIVATE res/appicon.icns)
 endif()
