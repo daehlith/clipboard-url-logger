@@ -35,6 +35,8 @@ find_package(Qt6 COMPONENTS Widgets REQUIRED)
 qt_add_executable(${CMAKE_PROJECT_NAME} WIN32 MACOSX_BUNDLE src/main.cpp src/clipboardurllogger.cpp)
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE Qt6::Widgets)
 
+install(TARGETS ${CMAKE_PROJECT_NAME} BUNDLE DESTINATION .)
+
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     set(_WINDEPLOYQT_COMMAND "${QT6_INSTALL_PREFIX}/tools/Qt6/bin/windeployqt")
     if(CMAKE_BUILD_TYPE STREQUAL "Debug")
@@ -48,6 +50,10 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     )
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    set(CPACK_GENERATOR "DragNDrop")
+    set(CPACK_PACKAGE_NAME ${CMAKE_PROJECT_NAME})
+    include(CPack)
+
     set(MACOSX_BUNDLE_ICON_FILE appicon.icns)
     set_source_files_properties(res/appicon.icns PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
     target_sources(${CMAKE_PROJECT_NAME} PRIVATE res/appicon.icns)
