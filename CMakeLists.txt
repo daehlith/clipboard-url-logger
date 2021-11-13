@@ -49,6 +49,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
         VERBATIM
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     )
+    target_sources(${CMAKE_PROJECT_NAME} PRIVATE res/resource.rc)
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     set(CPACK_GENERATOR "DragNDrop")
     set(CPACK_PACKAGE_NAME ${CMAKE_PROJECT_NAME})
