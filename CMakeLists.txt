@@ -38,6 +38,13 @@ target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE Qt6::Widgets)
 install(TARGETS ${CMAKE_PROJECT_NAME} BUNDLE DESTINATION .)
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    set(CPACK_GENERATOR "WIX")
+    set(CPACK_PACKAGE_NAME ${CMAKE_PROJECT_NAME})
+    # See https://docs.microsoft.com/en-us/windows/win32/msi/upgradecode
+    set(CPACK_WIX_UPGRADE_GUID "4B297CE6-CE35-4A3C-8219-C94A8422EF61")
+
+    include(CPack)
+
     set(_WINDEPLOYQT_COMMAND "${QT6_INSTALL_PREFIX}/tools/Qt6/bin/windeployqt")
     if(CMAKE_BUILD_TYPE STREQUAL "Debug")
         set(_WINDEPLOYQT_COMMAND "${QT6_INSTALL_PREFIX}/tools/Qt6/bin/windeployqt.debug")
