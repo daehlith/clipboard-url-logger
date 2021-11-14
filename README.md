@@ -16,6 +16,7 @@ However, now it's my playground for cross-platform desktop application developme
 - learning how to create installers with CPack: 1 hour
 - macOS installer: 1 hour
 - Windows installer: 1 hour
+- Basic UI refactoring: 2 hours
 
 ### Acknowledgements
 

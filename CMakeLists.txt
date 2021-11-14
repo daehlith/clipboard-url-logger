@@ -32,7 +32,11 @@ set(CMAKE_AUTOUIC ON)
 
 find_package(Qt6 COMPONENTS Widgets REQUIRED)
 
-qt_add_executable(${CMAKE_PROJECT_NAME} WIN32 MACOSX_BUNDLE src/main.cpp src/clipboardurllogger.cpp)
+qt_add_executable(${CMAKE_PROJECT_NAME} WIN32 MACOSX_BUNDLE
+    src/main.cpp
+    src/clipboardurlwatcher.cpp
+    src/mainwindow.cpp
+    src/mainwindow.ui)
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE Qt6::Widgets)
 
 install(TARGETS ${CMAKE_PROJECT_NAME} BUNDLE DESTINATION .)
